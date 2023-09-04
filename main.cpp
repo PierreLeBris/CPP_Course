@@ -1,27 +1,27 @@
 #include <iostream>
-#include "Personnage.hpp" //Ne pas oublier
+#include <string>
+#include "Personnage.hpp"
 
 using namespace std;
 
-Personnage::Personnage()
-{
-    m_vie = 100;
-    m_mana = 100;
-    m_nomArme = "Epee rouillee";
-    m_degatsArme = 10;
-}
-
 int main()
 {
-    Personnage david, goliath;
-    //Création de 2 objets de type Personnage : david et goliath
+    // Création des personnages
+    Personnage david, goliath("Epée aiguisée", 20);
 
-    goliath.attaquer(david); //goliath attaque david
-    david.boirePotionDeVie(20); //david récupère 20 de vie en buvant une potion
-    goliath.attaquer(david); //goliath attaque david
-    david.attaquer(goliath); //david contre-attaque... c'est assez clair non ? 
-    goliath.changerArme("Double hache tranchante veneneuse de la mort", 40);
+    // Au combat !
     goliath.attaquer(david);
+    david.boirePotionDeVie(20);
+    goliath.attaquer(david);
+    david.attaquer(goliath);
+    goliath.changerArme("Double hache tranchante vénéneuse de la mort", 40);
+    goliath.attaquer(david);
+
+    // Temps mort ! Voyons voir la vie de chacun...
+    cout << "David" << endl;
+    david.afficherEtat();
+    cout << endl << "Goliath" << endl;
+    goliath.afficherEtat();
 
     return 0;
 }
